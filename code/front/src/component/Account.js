@@ -23,7 +23,7 @@ export class Account extends React.Component {
     }
     Weibo = () => {
         return (
-            <div>
+            <div style={{margin:50}}>
                 <span>放二维码处</span>
                 <Input placeholder={'username'}/>
                 <Input placeholder={'password'}/>

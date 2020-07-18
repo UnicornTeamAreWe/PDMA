@@ -1,3 +1,5 @@
+## 使用前请将数据库配置修改，位置 `resources/application.properties`
+
 # Getting Started
 
 ### Reference Documentation

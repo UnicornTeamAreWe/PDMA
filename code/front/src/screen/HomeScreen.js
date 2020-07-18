@@ -124,7 +124,7 @@ export class HomeScreen extends React.Component {
     contentSelect = (key) => {
         switch (key) {
             case '个人信息':
-                return (<UserInfo/>)
+                return (<UserInfo user={this.state.data}/>)
             case '账户授权':
                 return (<Account/>)
             case '资料编辑':
@@ -132,6 +132,13 @@ export class HomeScreen extends React.Component {
             default:
                 return (<More/>)
         }
+    }
+
+    componentDidMount() {
+        console.log(this.props.location.state)
+        this.setState({
+            data:this.props.location.state
+        })
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React from "react";
+import {Descriptions} from "antd";
 
 export class UserInfo extends React.Component{
     constructor(props) {
@@ -10,6 +11,11 @@ export class UserInfo extends React.Component{
     }
 
     render() {
-        return(<span>此处应有个人信息</span>)
+        return(
+            <Descriptions title="User Info">
+                <Descriptions.Item label="UserName">{this.props.user.username}</Descriptions.Item>
+                <Descriptions.Item label="E-mail">{this.props.user.email}</Descriptions.Item>
+            </Descriptions>
+        )
     }
 }
