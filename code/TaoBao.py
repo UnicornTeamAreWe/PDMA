@@ -6,9 +6,6 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 from retrying import retry
 from selenium.webdriver import ActionChains
 
-import pyautogui
-pyautogui.PAUSE = 0.5
-
 logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -58,31 +55,48 @@ class taobao():
                     self.browser.find_element_by_xpath('//*[@id="J_MtSideMenu"]/div/dl/dd[2]').click()
                     time.sleep(1)
                     nextPage_xpath = '//*[@id="tp-bought-root"]/div[3]/div[2]/div/button[2]'
-                    #开始获取信息
-                    soup = BeautifulSoup(self.browser.page_source, 'lxml')
-                    body = soup.find('body')
-                    div = body.find('div', attrs={'id': 'page'})
-                    time.sleep(1)
-                    #获取当前页面所有订单
-                    divs = div.find_all('div', attrs={'class': 'index-mod__order-container___1ur4- js-order-container'})
-                    for div in divs:
-                        #headerInfo
-                        header = div.find('tbody', attrs = {'class':'bought-wrapper-mod__head___2vnqo'})
-                        time = header.find('span', attrs = {'class':'bought-wrapper-mod__create-time___yNWVS'}).get_text()
-                        store = header.find('a', attrs = {'class':'seller-mod__name___2d3js'}).get_text()
-                        #商品名称所在div
-                        name_div = div.find('div', attrs={'class': 'ml-mod__container___2DOxT production-mod__production___1O-24 suborder-mod__production___3WebF'})
-                        name_p = name_div.find('p')
-                        name = name_p.find('a').get_text()
-                        info_spans = div.find_all('span', attrs={'class': 'production-mod__sku-item___1VEL1'})
-                        info = ""
-                        for span in info_spans:
-                            info = info + span.get_text()
-                        #价格所在div
-                        price_div = div.find_all('div', attrs={'class': 'price-mod__price___cYafX'})
-                        price_p = price_div[1].find('p')
-                        price = price_p.get_text()
-                        print(time + " " + store + " " + name + " " + info + " " + price)
+                    while True:
+                        time.sleep(1)
+                        #开始获取信息
+                        soup = BeautifulSoup(self.browser.page_source, 'lxml')
+                        body = soup.find('body')
+                        div = body.find('div', attrs={'id': 'page'})
+                        #获取当前页面所有订单
+                        divs = div.find_all('div', attrs={'class': 'index-mod__order-container___1ur4- js-order-container'})
+                        for div in divs:
+                            #headerInfo
+                            header = div.find('tbody', attrs = {'class':'bought-wrapper-mod__head___2vnqo'})
+                            time_info = header.find('span', attrs = {'class':'bought-wrapper-mod__create-time___yNWVS'}).get_text()
+                            store_info = header.find('a', attrs = {'class':'seller-mod__name___2d3js'})
+                            if store_info is None:
+                                store = ""
+                            else:
+                                store = store_info.get_text()
+                            #商品信息
+                            name_div = div.find('div', attrs={'class': 'ml-mod__container___2DOxT production-mod__production___1O-24 suborder-mod__production___3WebF'})
+                            name_p = name_div.find('p')
+                            name = name_p.find('a').get_text()
+                            info_spans = div.find_all('span', attrs={'class': 'production-mod__sku-item___1VEL1'})
+                            info = ""
+                            for span in info_spans:
+                                info = info + span.get_text()
+                            #价格
+                            price_div = div.find_all('div', attrs={'class': 'price-mod__price___cYafX'})
+                            price_p = price_div[1].find('p')
+                            price = price_p.get_text()
+                            #交易状态
+                            state_div = div.find_all('span', attrs={'class':'text-mod__link___1rXmw'})
+                            state=""
+                            for s_div in state_div:
+                                state = state+" "+s_div.get_text()
+                            print(time_info + " " + store + " " + name + " " + info + " " + price + " " + state)
+                        nextPage = self.browser.find_element_by_xpath(nextPage_xpath)
+                        able_to_click = nextPage.is_enabled()
+                        if able_to_click==False:
+                            break
+                        else:
+                            nextPage.click()
+
                     break
                 else:
                     continue
@@ -94,4 +108,5 @@ if __name__ == '__main__':
     tb = taobao()
     tb.login(username, password)
     tb.getInfo()
+    print("done")
 
