@@ -3,8 +3,15 @@ from bs4 import BeautifulSoup
 import logging
 import time
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
-from retrying import retry
+import mysql.connector
 from selenium.webdriver import ActionChains
+
+#数据库连接
+conn = mysql.connector.connect(user='root', password='LeBronQ20000624', host='localhost', port='3306', database='PDMA',
+                               use_unicode=True)
+conn.autocommit = True
+#建立游标
+c = conn.cursor()
 
 logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -83,30 +90,34 @@ class taobao():
                             #价格
                             price_div = div.find_all('div', attrs={'class': 'price-mod__price___cYafX'})
                             price_p = price_div[1].find('p')
-                            price = price_p.get_text()
+                            price_span = price_p.find_all('span')
+                            price = price_span[1].get_text()
                             #交易状态
                             state_div = div.find_all('span', attrs={'class':'text-mod__link___1rXmw'})
                             state=""
                             for s_div in state_div:
                                 state = state+" "+s_div.get_text()
                             print(time_info + " " + store + " " + name + " " + info + " " + price + " " + state)
+                            c.execute("INSERT INTO `PDMA`.`Taobao`(`user_id`,`Transaction_time`,`Shop_name`,`Commodity`,`Detail`,`Price`,`State`) VALUES(%s,%s,%s,%s,%s,%s,%s)",
+                                      (1,time_info,store,name,info,price,state))
                         nextPage = self.browser.find_element_by_xpath(nextPage_xpath)
                         able_to_click = nextPage.is_enabled()
                         if able_to_click==False:
                             break
                         else:
                             nextPage.click()
-
                     break
                 else:
                     continue
 
 if __name__ == '__main__':
     # 填入自己的用户名，密码
-    username = ''
-    password = ''
+    username = 'tb996284676'
+    password = 'LeBronQ20000624'
     tb = taobao()
     tb.login(username, password)
     tb.getInfo()
     print("done")
+    c.close()
+    conn.close()
 
