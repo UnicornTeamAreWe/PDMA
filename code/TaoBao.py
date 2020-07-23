@@ -112,8 +112,8 @@ class taobao():
 
 if __name__ == '__main__':
     # 填入自己的用户名，密码
-    username = 'tb996284676'
-    password = 'LeBronQ20000624'
+    username = ''
+    password = ''
     tb = taobao()
     tb.login(username, password)
     tb.getInfo()
