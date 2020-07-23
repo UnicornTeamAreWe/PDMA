@@ -9,5 +9,4 @@ import java.util.List;
 @Service
 public interface TaobaoService {
     List<Taobao> getTaobao(Long Taobao);
-    void deleteItem(TaobaoMultiKeys keys);
 }

@@ -24,12 +24,4 @@ public class AlipayDaoImpl implements AlipayDao {
         List<Alipay> list = alipayRepository.findByUserId(userId);
         return list;
     }
-
-    @Modifying
-    @Transactional
-    @Override
-    public void deleteAlipay(Long userId, String Transaction_number) {
-        alipayRepository.deleteAllByUserIdAndTransactionNumber(userId,Transaction_number);
-    }
-
 }

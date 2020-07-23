@@ -37,8 +37,6 @@ public class Taobao {
         this.userId = userId;
     }
 
-    @Id
-    @Column(name="Transaction_time", insertable = false, updatable = false)
     public Date getTransaction_time() {
         return Transaction_time;
     }

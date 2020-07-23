@@ -24,9 +24,4 @@ public class AlipayServiceImpl implements AlipayService {
         return AlipayList;
     }
 
-    @Override
-    public void deleteItem(AlipayMultiKeys keys) {
-        alipayDao.deleteAlipay(keys.getUserId(),keys.getTransaction_number());
-    }
-
 }

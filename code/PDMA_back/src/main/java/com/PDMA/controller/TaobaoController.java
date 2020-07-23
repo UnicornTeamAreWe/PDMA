@@ -19,10 +19,4 @@ public class TaobaoController {
     public List<Taobao> getTaobao(Long userId){
         return taobaoService.getTaobao(userId);
     }
-
-    @RequestMapping(value = "/deleteTaobao")
-    public @ResponseBody void deleteItem(TaobaoMultiKeys keys){
-        taobaoService.deleteItem(keys);
-    }
-
 }

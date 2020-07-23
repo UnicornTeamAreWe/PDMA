@@ -48,9 +48,7 @@ public class Alipay {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-
-    @Id
-    @Column(name="Transaction_number", insertable = false, updatable = false)
+    
     public String getTransaction_number() {
         return Transaction_number;
     }

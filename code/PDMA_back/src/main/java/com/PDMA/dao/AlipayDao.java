@@ -8,7 +8,4 @@ import java.util.List;
 
 public interface AlipayDao {
     List<Alipay> findAllByUserId(Long userId);
-    @Modifying
-    @Transactional
-    void deleteAlipay(Long userId, String Transaction_number);
 }
