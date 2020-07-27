@@ -15,7 +15,7 @@ public class SoftwareDaoImpl implements SoftwareDao {
     SoftwareRepository softwareRepository;
 
     @Autowired
-    public SoftwareDaoImpl(SoftwareRepository softwareRepository){
+    public SoftwareDaoImpl(SoftwareRepository softwareRepository) {
         this.softwareRepository = softwareRepository;
     }
 
@@ -34,7 +34,7 @@ public class SoftwareDaoImpl implements SoftwareDao {
     @Modifying
     @Transactional
     public void deleteSoftware(Long userId, String SoftwareName) {
-        softwareRepository.deleteAllByUserIdAndSoftwareName(userId,SoftwareName);
+        softwareRepository.deleteAllByUserIdAndSoftwareName(userId, SoftwareName);
     }
 
 }

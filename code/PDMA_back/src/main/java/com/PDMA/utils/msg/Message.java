@@ -1,25 +1,25 @@
 package com.PDMA.utils.msg;
 
-import com.PDMA.entity.User;
+import com.PDMA.entity.SysUser;
 
 public class Message {
     private Integer status;
     private String message;
-    private User user;
+    private SysUser user;
 
     public Message(){}
 
-    public Message(Integer status, String message, User user) {
+    public Message(Integer status, String message, SysUser user) {
         this.status = status;
         this.message = message;
         this.user = user;
     }
 
-    public User getUser() {
+    public SysUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(SysUser user) {
         this.user = user;
     }
 

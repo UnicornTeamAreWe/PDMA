@@ -1,21 +1,25 @@
 package com.PDMA.service;
 
-import com.PDMA.entity.User;
+import com.PDMA.entity.SysUser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface UserService {
-    User checkUser(String username, String password);
+    SysUser checkUser(String username, String password);
 
-    void saveUser(User user);
+    void saveUser(SysUser user);
 
     Boolean hasUser(String username);
 
-    List<User> getAllUser();
+    List<SysUser> getAllUser();
 
-    User getUser(Long userId);
+    SysUser getUser(Long userId);
+
+    SysUser getUserByUsername(String username);
 
     void setType(Long userId, String type);
+
+    void init();
 }

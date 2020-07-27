@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserInfo props test 1`] = `
+<div
+  className="ant-descriptions"
+>
+  <div
+    className="ant-descriptions-title"
+  >
+    User Info
+  </div>
+  <div
+    className="ant-descriptions-view"
+  >
+    <table>
+      <tbody>
+        <tr
+          className="ant-descriptions-row"
+        >
+          <td
+            className="ant-descriptions-item"
+            colSpan={1}
+          >
+            <span
+              className="ant-descriptions-item-label"
+            >
+              UserName
+            </span>
+            <span
+              className="ant-descriptions-item-content"
+            >
+              test
+            </span>
+          </td>
+          <td
+            className="ant-descriptions-item"
+            colSpan={2}
+          >
+            <span
+              className="ant-descriptions-item-label"
+            >
+              E-mail
+            </span>
+            <span
+              className="ant-descriptions-item-content"
+            >
+              test@test.com
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

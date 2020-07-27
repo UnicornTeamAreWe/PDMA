@@ -1,7 +1,7 @@
 package com.PDMA.serviceimpl;
 
 import com.PDMA.dao.UserDao;
-import com.PDMA.entity.User;
+import com.PDMA.entity.SysUser;
 import com.PDMA.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,35 +14,44 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User checkUser(String username, String password) {
+    public SysUser checkUser(String username, String password) {
         return userDao.checkUser(username, password);
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(SysUser user) {
         userDao.saveUser(user);
     }
 
     @Override
-    public Boolean hasUser(String username){
+    public Boolean hasUser(String username) {
         return userDao.hasUser(username);
     }
 
     @Override
-    public List<User> getAllUser(){
+    public List<SysUser> getAllUser() {
         return userDao.getAllUser();
     }
 
     @Override
-    public User getUser(Long userId){
+    public SysUser getUser(Long userId) {
         return userDao.getUser(userId);
     }
 
     @Override
-    public void setType(Long userId, String type){
-        userDao.setType(userId,type);
+    public SysUser getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
     }
 
+    @Override
+    public void setType(Long userId, String type) {
+        userDao.setType(userId, type);
+    }
+
+    @Override
+    public void init() {
+
+    }
 
 
 }

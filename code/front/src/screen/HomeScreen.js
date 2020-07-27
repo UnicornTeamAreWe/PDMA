@@ -135,6 +135,7 @@ export class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
+        if (!this.props.location.state) this.props.history.push('/login')
         console.log(this.props.location.state)
         this.setState({
             data:this.props.location.state

@@ -65,13 +65,11 @@ export class LoginScreen extends React.Component {
             })
     }
     alert = res => {
-        switch (res.status) {
-            case 0:
-                return message.error(res.message)
-            case -1:
-                return message.error(res.message)
+        switch (res.errorCode) {
+            case 102:
+                return message.error(res.errorMsg)
             case 1:case 100:
-                return this.props.history.push({pathname:'/',state:res.user})
+                return this.props.history.push({pathname:'/',state:res.data})
         }
     };
     checkUser = (username, pwd) => {
@@ -83,13 +81,8 @@ export class LoginScreen extends React.Component {
 
         let opts = {
             method: 'POST',
-            body: datastr,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
         }
-        fetch('http://localhost:8088/login', opts)
+        fetch('http://localhost:8088/login?username='+username+'&password='+pwd, opts)
             .then(response => response.json())
             .then(res => {
                 console.log(res)
