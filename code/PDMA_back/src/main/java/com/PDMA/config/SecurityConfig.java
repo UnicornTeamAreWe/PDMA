@@ -49,10 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
+                .antMatchers("/getUsers").hasRole("normal")
                 .anyRequest()
                 .authenticated()
 
                 .and()
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 

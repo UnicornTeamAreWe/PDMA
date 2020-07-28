@@ -1,6 +1,7 @@
 package com.PDMA.support;
 
 import com.PDMA.utils.msg.JSONResult;
+import com.PDMA.utils.msg.JwtTokenUtil;
 import com.alibaba.fastjson.JSON;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +20,12 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         User userDetails = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        String token = JwtTokenUtil.createToken(userDetails.getUsername(), userDetails.getAuthorities().toString());
+
         JSONResult<User> result = new JSONResult(Boolean.TRUE, 100, "登陆成功", userDetails);
+        httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("text/json;charset=utf-8");
+        httpServletResponse.setHeader("token", JwtTokenUtil.TOKEN_PREFIX + token);
         httpServletResponse.getWriter().write(JSON.toJSONString(result));
     }
 }

@@ -3,6 +3,7 @@ package com.PDMA.controller;
 import com.PDMA.entity.SysUser;
 import com.PDMA.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value = "/getUsers")
+    @PreAuthorize("hasRole('normal')")
     public List<SysUser> getAllUser() {
         return userService.getAllUser();
     }
