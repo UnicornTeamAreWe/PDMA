@@ -109,7 +109,7 @@
       <workItem from="1595732060745" duration="2634000" />
       <workItem from="1595816113191" duration="4347000" />
       <workItem from="1595918873946" duration="6757000" />
-      <workItem from="1595944787211" duration="595000" />
+      <workItem from="1595944787211" duration="636000" />
     </task>
     <task id="LOCAL-00001" summary="后端 security">
       <created>1595820824116</created>
@@ -118,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595820824116</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="权限认证">
+      <created>1595948395697</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595948395697</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +133,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="后端 security" />
-    <option name="LAST_COMMIT_MESSAGE" value="后端 security" />
+    <MESSAGE value="权限认证" />
+    <option name="LAST_COMMIT_MESSAGE" value="权限认证" />
   </component>
   <component name="WindowStateProjectService">
     <state x="653" y="325" key="#Assign_Data_Sources" timestamp="1595403985861">
@@ -154,10 +162,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/-1440.0.1440.900@0.0.1536.864" timestamp="1595472713902" />
-    <state x="272" y="0" key="CommitChangelistDialog2" timestamp="1595820818528">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1595948392175">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="272" y="0" key="CommitChangelistDialog2/0.0.1536.864/-1440.0.1440.900@0.0.1536.864" timestamp="1595820818528" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.864/-1440.0.1440.900@0.0.1536.864" timestamp="1595948392175" />
     <state x="533" y="197" key="FileChooserDialogImpl" timestamp="1595920287376">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
