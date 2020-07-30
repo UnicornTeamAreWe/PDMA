@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css'
-import {HomeScreen} from "./screen/HomeScreen";
+import {Router} from "./router";
 
 function App() {
   return (
-    <HomeScreen/>
+    <Router/>
   );
 }
 

@@ -16,6 +16,11 @@ import {UserInfo} from "../component/UserInfo";
 import {Account} from "../component/Account";
 import {InfoEdit} from "../component/InfoEdit";
 import {More} from "../component/More";
+import {AmountByYear} from "../component/AmountByYear";
+import {AmountByMonth} from "../component/AmountByMonth";
+import {AmountByYearMonth} from "../component/AmountByYearMonth";
+import {OrderNumberByMonth} from "../component/OrderNubmerByMonth";
+import {OrderNumberByYearMonth} from "../component/OrderNumberByYearMonth";
 
 const {Title} = Typography;
 const {SubMenu} = Menu;
@@ -71,7 +76,9 @@ export class HomeScreen extends React.Component {
                             </SubMenu>
                         </Menu>
                     </Sider>
-                    <Content style={{padding: '0 24px', minHeight: 280}}>Content</Content>
+                    <Content style={{padding: '0 24px', minHeight: 280}}>
+                        <OrderNumberByYearMonth/>
+                    </Content>
                 </Layout>
             </Content>
         )
@@ -124,7 +131,7 @@ export class HomeScreen extends React.Component {
     contentSelect = (key) => {
         switch (key) {
             case '个人信息':
-                return (<UserInfo/>)
+                return (<UserInfo user={this.state.data}/>)
             case '账户授权':
                 return (<Account/>)
             case '资料编辑':
@@ -132,6 +139,14 @@ export class HomeScreen extends React.Component {
             default:
                 return (<More/>)
         }
+    }
+
+    componentDidMount() {
+        if (!this.props.location.state) this.props.history.push('/login')
+        console.log(this.props.location.state)
+        this.setState({
+            data:this.props.location.state
+        })
     }
 
     render() {

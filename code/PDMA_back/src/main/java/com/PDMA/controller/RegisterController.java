@@ -4,23 +4,22 @@ import com.PDMA.entity.User;
 import com.PDMA.utils.msg.Message;
 import com.PDMA.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
+@CrossOrigin
 public class RegisterController {
     @Autowired
     private UserService userService;
 
     @PostMapping(value="/register")
-    public Message addUser(@RequestParam("email") String email,
-                           @RequestParam("password") String password,
-                           @RequestParam("username") String username){
-        if(userService.hasUser(username))
+    public Message addUser(@RequestBody Map<String,Object> map){
+        if(userService.hasUser(map.get("username").toString()))
             return new Message(0,"用户名已被注册",null);
         else {
-            User user = new User(username, password, email, "NORMAL");
+            User user = new User(map.get("username").toString(), map.get("password").toString(), map.get("email").toString(), "NORMAL");
             userService.saveUser(user);
             return new Message(1, "注册成功", user);
         }

@@ -4,19 +4,19 @@ import com.PDMA.entity.User;
 import com.PDMA.service.UserService;
 import com.PDMA.utils.msg.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
+@CrossOrigin
 public class LoginController {
     @Autowired
     private UserService userService;
 
     @PostMapping(value="/login")
-    public Message login(@RequestParam("username") String username,
-                         @RequestParam("password") String password){
-        User user = userService.checkUser(username, password);
+    public Message login(@RequestBody Map<String,Object> map){
+        User user = userService.checkUser(map.get("username").toString(), map.get("password").toString());
         if(user == null){
             return new Message(0,"error username or password",null);
         }else{
