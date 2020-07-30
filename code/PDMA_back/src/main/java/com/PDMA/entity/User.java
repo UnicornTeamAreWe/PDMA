@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Table(name = "user")
 @JsonIgnoreProperties(value = {"password","handler","hibernateLazyInitializer","fieldHandler"})
 public class User {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long userId;
     private String username;
     private String password;
@@ -23,8 +25,7 @@ public class User {
         this.type = type;
     }
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+
     public Long getUserId() {
         return userId;
     }
