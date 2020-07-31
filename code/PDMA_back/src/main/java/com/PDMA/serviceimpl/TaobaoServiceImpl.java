@@ -23,10 +23,4 @@ public class TaobaoServiceImpl implements TaobaoService {
         List<Taobao> TaobaoList = taobaoDao.findAllByUserId(userId);
         return TaobaoList;
     }
-
-    @Override
-    public void deleteItem(TaobaoMultiKeys keys) {
-        taobaoDao.deleteTaobao(keys.getUserId(),keys.getTransaction_time());
-    }
-
 }

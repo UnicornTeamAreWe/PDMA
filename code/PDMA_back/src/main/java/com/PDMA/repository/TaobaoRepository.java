@@ -7,6 +7,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface TaobaoRepository extends JpaRepository<Taobao,String>{
-    void deleteAllByUserIdAndTransactiontime(Long userId, Date Transaction_time);
     List<Taobao> findByUserId(Long userId);
 }

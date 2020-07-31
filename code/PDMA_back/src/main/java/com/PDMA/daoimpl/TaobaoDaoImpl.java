@@ -25,12 +25,4 @@ public class TaobaoDaoImpl implements TaobaoDao {
         List<Taobao> list = taobaoRepository.findByUserId(userId);
         return list;
     }
-
-    @Modifying
-    @Transactional
-    @Override
-    public void deleteTaobao(Long userId, Date Transaction_time) {
-        taobaoRepository.deleteAllByUserIdAndTransactiontime(userId,Transaction_time);
-    }
-
 }

@@ -9,5 +9,4 @@ import java.util.List;
 @Service
 public interface AlipayService {
     List<Alipay> getAlipay(Long userId);
-    void deleteItem(AlipayMultiKeys keys);
 }

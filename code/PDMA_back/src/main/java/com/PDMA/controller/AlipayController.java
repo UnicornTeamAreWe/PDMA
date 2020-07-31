@@ -19,10 +19,4 @@ public class AlipayController {
     public List<Alipay> getTaobao(Long userId){
         return alipayService.getAlipay(userId);
     }
-
-    @RequestMapping(value = "/deleteAlipay")
-    public @ResponseBody void deleteItem(AlipayMultiKeys keys){
-        alipayService.deleteItem(keys);
-    }
-
 }

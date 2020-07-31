@@ -9,7 +9,4 @@ import java.util.List;
 
 public interface TaobaoDao {
     List<Taobao> findAllByUserId(Long userId);
-    @Modifying
-    @Transactional
-    void deleteTaobao(Long userId, Date Transaction_time);
 }
