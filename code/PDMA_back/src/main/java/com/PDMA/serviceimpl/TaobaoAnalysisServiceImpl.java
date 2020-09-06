@@ -20,7 +20,6 @@ public class TaobaoAnalysisServiceImpl implements TaobaoAnalysisService {
     @Override
     public List<Taobao_Analysis> getTaobaoAnalysis(Long userId) {
         List<Taobao_Analysis> TaobaoList = taobaoanalysisDao.findAllByUserId(userId);
-        System.out.println(TaobaoList);
         return TaobaoList;
     }
 }
