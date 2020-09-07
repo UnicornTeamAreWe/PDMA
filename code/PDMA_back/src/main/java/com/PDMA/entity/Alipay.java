@@ -1,15 +1,14 @@
 package com.PDMA.entity;
 
+import com.PDMA.utils.msg.AlipayMultiKeys;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "Alipay")
+@IdClass(AlipayMultiKeys.class)
 @JsonIgnoreProperties(value = {"userId","Transaction_number","hibernateLazyInitializer","fieldHandler"})
 public class Alipay {
     private Long userId;
@@ -48,7 +47,9 @@ public class Alipay {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-    
+
+    @Id
+    @Column(name="Transaction_number", insertable = false, updatable = false)
     public String getTransaction_number() {
         return Transaction_number;
     }
