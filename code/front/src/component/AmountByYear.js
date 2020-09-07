@@ -2,7 +2,9 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import axios from "axios";
 import qs from "qs";
+import {Typography} from "antd";
 
+const { Title, Paragraph, Text } = Typography;
 const getTaobaoAnalysis = async (id,setData)=>{
     axios.post("http://localhost:8088/getTaobaoAnalysis", qs.stringify({ id: id }))
         .then(response =>{
@@ -33,6 +35,12 @@ export function AmountByYear() {
         }
     }
     Amount();
+    let maxNum = Math.max.apply(null,AmountByYear);
+    let minNum = Math.min.apply(null,AmountByYear);
+    let Max_year = Year-AmountByYear.findIndex((item) => item === maxNum);
+    let Min_year = Year-AmountByYear.findIndex((item) => item === minNum);
+    let all = eval(AmountByYear.join("+"));
+    let average = (all/AmountByYear.length).toFixed(2);
 
     let data1 = [
         {
@@ -54,7 +62,8 @@ export function AmountByYear() {
         {
             values: AmountByYear,
             labels: year_arr,
-            type: 'pie'
+            type: 'pie',
+            hole: .4
         }
     ];
 
@@ -62,16 +71,22 @@ export function AmountByYear() {
         <div>
             <Plot
                 data={data1}
-                layout={ {width: 800, height: 600, title: 'Amount By Year'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Year'} }
             />
             <Plot
                 data={data2}
-                layout={ {width: 800, height: 600, title: 'Amount By Year'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Year'} }
             />
             <Plot
                 data={data3}
-                layout={ {width: 800, height: 600, title: 'Amount By Year'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Year'} }
             />
+            <Typography>
+                <Title>分析报告</Title>
+                <Paragraph>
+                    图中展示了您在淘宝上每年消费的金额，您可以从中获知每年消费金额的大小。由图可知，消费金额最多的年份为{Max_year}年，共消费{maxNum.toFixed(2)}元，消费金额最少的年份为{Min_year}年，共消费{minNum.toFixed(2)}元, 平均每年消费{average}元。
+                </Paragraph>
+            </Typography>
         </div>
         );
 }

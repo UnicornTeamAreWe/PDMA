@@ -2,6 +2,10 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import axios from "axios";
 import qs from "qs";
+import {Typography} from "antd";
+
+const { Title, Paragraph, Text } = Typography;
+
 
 const getTaobaoAnalysis = async (id,setData)=>{
     axios.post("http://localhost:8088/getTaobaoAnalysis", qs.stringify({ id: id }))
@@ -70,8 +74,8 @@ export function AmountByYearMonth() {
             <Plot
             data={data1}
             layout={{
-                width: 800,
-                height: 600,
+                width: 600,
+                height: 400,
                 title: 'Amount By Year Month',
                 barmode: 'group'
             }}/>
@@ -79,11 +83,17 @@ export function AmountByYearMonth() {
             <Plot
                 data={data2}
                 layout={{
-                    width: 800,
-                    height: 600,
+                    width: 600,
+                    height: 400,
                     title: 'Amount By Year Month',
                     barmode: 'group'
                 }}/>
+            <Typography>
+                <Title>分析报告</Title>
+                <Paragraph>
+                    图中展示了每年您在淘宝上每个月消费的金额，您可以从中获知每个月消费金额的走势。
+                </Paragraph>
+            </Typography>
         </div>
             );
 }
