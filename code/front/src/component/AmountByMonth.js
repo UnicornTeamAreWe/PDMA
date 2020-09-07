@@ -2,6 +2,8 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import axios from "axios";
 import qs from "qs";
+import {Typography} from "antd";
+const { Title, Paragraph, Text } = Typography;
 
 const getTaobaoAnalysis = async (id,setData)=>{
     axios.post("http://localhost:8088/getTaobaoAnalysis", qs.stringify({ id: id }))
@@ -27,7 +29,12 @@ export function AmountByMonth() {
         });
     }
     Amount();
-    console.log(AmountByMonth);
+    let maxNum = Math.max.apply(null,AmountByMonth);
+    let minNum = Math.min.apply(null,AmountByMonth);
+    let Max_month = AmountByMonth.findIndex((item) => item === maxNum)+1;
+    let Min_month = AmountByMonth.findIndex((item) => item === minNum)+1;
+    let all = eval(AmountByMonth.join("+"));
+    let average = (all/12).toFixed(2);
 
     let data1 = [
         {
@@ -49,7 +56,8 @@ export function AmountByMonth() {
         {
             values: AmountByMonth,
             labels: Month_arr,
-            type: 'pie'
+            type: 'pie',
+            hole: .4
         }
     ];
 
@@ -57,15 +65,21 @@ export function AmountByMonth() {
         <div>
             <Plot
                 data={data1}
-                layout={ {width: 800, height: 600, title: 'Amount By Month'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Month'} }
             />
             <Plot
                 data={data2}
-                layout={ {width: 800, height: 600, title: 'Amount By Month'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Month'} }
             />
             <Plot
                 data={data3}
-                layout={ {width: 800, height: 600, title: 'Amount By Month'} }
+                layout={ {width: 600, height: 400, title: 'Amount By Month'} }
             />
+            <Typography>
+                <Title>分析报告</Title>
+                <Paragraph>
+                    图中展示了您在淘宝上每个月消费的金额，您可以从中获知每个月消费金额的大小。由图可知，消费金额最多的月份为{Max_month}月份，共消费{maxNum}元，消费金额最少的月份为{Min_month}月份，共消费{minNum}元, 平均每个月消费{average}元。
+                </Paragraph>
+            </Typography>
         </div>);
 }

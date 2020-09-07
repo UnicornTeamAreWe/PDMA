@@ -21,6 +21,12 @@ import {AmountByMonth} from "../component/AmountByMonth";
 import {AmountByYearMonth} from "../component/AmountByYearMonth";
 import {OrderNumberByMonth} from "../component/OrderNubmerByMonth";
 import {OrderNumberByYearMonth} from "../component/OrderNumberByYearMonth";
+import {OrderNumberByYear} from "../component/OrderNumberByYear";
+import {Weibo_BasicInfo} from "../component/Weibo_BasicInfo";
+import {Weibo_FollowInfo} from "../component/Weibo_FollowInfo";
+import {Tongcheng} from "../component/Tongcheng";
+import {Alipay_All} from "../component/Alipay_All";
+import {Alipay_Det} from "../component/Alipay_Det";
 
 const {Title} = Typography;
 const {SubMenu} = Menu;
@@ -77,7 +83,17 @@ export class HomeScreen extends React.Component {
                         </Menu>
                     </Sider>
                     <Content style={{padding: '0 24px', minHeight: 280}}>
-                        <OrderNumberByYearMonth/>
+                        <AmountByYear/>
+                        {/*<AmountByMonth/>*/}
+                        {/*<AmountByYearMonth/>*/}
+                        {/*<OrderNumberByYear/>*/}
+                        {/*<OrderNumberByMonth/>*/}
+                        {/*<OrderNumberByYearMonth/>*/}
+                        {/*<Weibo_BasicInfo/>*/}
+                        {/*<Weibo_FollowInfo/>*/}
+                        {/*<Alipay_All/>*/}
+                        {/*<Alipay_Det/>*/}
+                        {/*<Tongcheng/>*/}
                     </Content>
                 </Layout>
             </Content>
